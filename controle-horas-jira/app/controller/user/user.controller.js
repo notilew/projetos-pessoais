@@ -1,17 +1,25 @@
 window.addEventListener('load', function () {
-  const btnSave = document.querySelector('#btn-save');
+  const btn = document.getElementById('btn-save');
   
-  btnSave.addEventListener('click', function () {
+  btn.addEventListener('click', function () {
     const form = document.querySelector('form');
     const user = new User();
 
-    user.setName = form.querySelector('#name').value;
-    user.setSurname = form.querySelector('#surname').value;
-    user.setBirthday = form.querySelector('#birthday').value;
+    user.setName(form.querySelector('#name').value);
+    user.setSurname(form.querySelector('#surname').value);
+    user.setBirthday(form.querySelector('#birthday').value);
     
-    user.setOffice = form.querySelector('#office').value;
-    user.setCompany = form.querySelector('#company').value;
-debugger;
-    console.log(form.querySelector('photograph').value);
+    user.setOffice(form.querySelector('#office').value);
+    user.setCompany(form.querySelector('#company').value);
+
+    User.importPhotograph(form.querySelector('#photograph').files[0]);
   });
+
+  const photograph = document.getElementById('photograph');
+
+  if (photograph.files[0]) {
+    photograph.addEventListener('change', function() {
+      
+    });
+  }
 });
