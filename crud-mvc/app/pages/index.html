@@ -8,6 +8,9 @@
 
     <title>App CRUD de Tarefas</title>
 
+    <script src="../core/model/task.model.js"></script>
+    <script src="../core/view/task.view.js"></script>
+    <script src="../core/controller/task.controller.js"></script>
     <script src="../../assets/js/main.js"></script>
 </head>
 
@@ -15,6 +18,17 @@
     <main>
         <section>
             <h1>App CRUD de Tarefas</h1>
+            <form>
+                <fieldset>
+                    <legend>Nova Tarefa</legend>
+                    <label>
+                        <input type="text" name="task" id="task" maxlength="50" size="50" placeholder="Descrição da Tarefa">
+                    </label>
+                    <button type=button>
+                        Salvar
+                    </button>
+                </fieldset>
+            </form>
         </section>
     </main>
 </body>

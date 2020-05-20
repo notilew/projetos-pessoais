@@ -1,4 +1,4 @@
-export default class TaskModel {
+class TaskModel {
 
     constructor() {
         this.tasks = [
@@ -27,10 +27,7 @@ export default class TaskModel {
 
     updateTask(id, updatedTaskText) {
         this.tasks = this.tasks.map(task => {
-            if (task.id === id) {
-                task.text = updatedTaskText;
-                task.complete = task.complete;
-            }
+            if (task.id === id) task.text = updatedTaskText;
 
             return task;
         });
@@ -38,7 +35,15 @@ export default class TaskModel {
 
     deleteTask(id) {
         this.tasks = this.tasks.filter(task => {
-            task.id !== id;
+            if (task.id !== id) return task;
+        });
+    }
+
+    toggleTask(id) {
+        this.tasks = this.tasks.map(task => {
+            if (task.id === id) task.complete = !task.complete;
+
+            return task;
         });
     }
 
