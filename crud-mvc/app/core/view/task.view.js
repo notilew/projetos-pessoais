@@ -2,6 +2,9 @@ class TaskView {
 
     constructor() {
         this.app = this.getElement('body');
+        this.list = this.createElement('ul', 'task-list');
+
+        this.app.append(this.list);
     }
     
     createElement(tag, className) {
