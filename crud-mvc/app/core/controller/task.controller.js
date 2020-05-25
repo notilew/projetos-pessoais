@@ -4,22 +4,24 @@ class TaskController {
         this.model = model;
         this.view = view;
 
+        this.view.bindCreateTask(this.handleCreateTask);
+
         this.onTaskListChanged(this.model.tasks);
     }
 
-    handleAddTask(taskText) {
+    handleCreateTask = (taskText) => {debugger;
         this.model.createTask(taskText);
     }
 
-    handleUpdateTask(id, updatedTaskText) {
+    handleUpdateTask = (id, updatedTaskText) => {
         this.model.updateTask(id, updatedTaskText);
     }
 
-    handleDeleteTask(id) {
+    handleDeleteTask = (id) => {
         this.model.deleteTask(id);
     }
 
-    handleToggleTask(id) {
+    handleToggleTask = (id) => {
         this.model.toggleTask(id);
     }
 

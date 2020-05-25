@@ -8,15 +8,15 @@ class TaskView {
 
         this.app.append(this.taskList);
     }
-    
+
     bindCreateTask(handler) {
         this.form.addEventListener('submit', event => {
             event.preventDefault();
 
-           if (this.getTaskText()) {
-               handler(this.getTaskText());
-               this.setTaskText();
-           }
+            if (this.getTaskText()) {
+                handler(this.getTaskText());
+                this.setTaskText();
+            }
         });
     }
 

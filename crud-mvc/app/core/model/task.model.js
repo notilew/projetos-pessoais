@@ -14,7 +14,7 @@ class TaskModel {
             }
         ];
     }
-    
+
     createTask(taskText) {
         const task = {
             id: (this.tasks.length > 0) ? this.tasks[this.tasks.length - 1].id + 1 : 1,
