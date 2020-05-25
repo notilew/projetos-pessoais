@@ -3,6 +3,7 @@ class TaskView {
     constructor() {
         this.app = this.getElement('body');
         this.form = this.getElement('form');
+        this.input = this.getElement('form input');
         this.taskList = this.createElement('ul', 'task-list');
 
         this.app.append(this.taskList);
@@ -12,8 +13,19 @@ class TaskView {
         this.form.addEventListener('submit', event => {
             event.preventDefault();
 
-            
+           if (this.getTaskText()) {
+               handler(this.getTaskText());
+               this.setTaskText();
+           }
         });
+    }
+
+    getTaskText() {
+        return this.input.value;
+    }
+
+    setTaskText(taskText = '') {
+        this.input.value = taskText;
     }
 
     displayTasks(tasks) {
