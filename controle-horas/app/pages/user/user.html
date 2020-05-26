@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="wellington felix">
+    <meta name="description" content="página de cadastro de usuários">
+    <meta name="keywords" content="ch, controle, horas, cadastro, usuarios">
+
+    <title>Controle Horas - Cadastro de Usuário</title>
+
+    <link rel="stylesheet" href="../../../assets/lib/normalize/normalize.css">
+
+    <script src="../../core/model/user/user.model.js"></script>
+    <script src="../../core/view/user/user.view.js"></script>
+    <script src="../../core/controller/user/user.controller.js"></script>
+    <script src="../../../assets/js/user/main.js"></script>
+</head>
+
+<body>
+    <main>
+        <section>
+            <h1>Controle Horas (CH) - Cadastro de Usuário</h1>
+            <form>
+                <fieldset>
+                    <legend>Pessoal</legend>
+                    <div>
+                        <label for="name">Nome:</label>
+                        <input type="text" name="name" id="name" size="30" maxlength="30" placeholder="João">
+                    </div>
+                    <div>
+                        <label for="surname">Sobrenome:</label>
+                        <input type="text" name="surname" id="surname" size="30" maxlength="30" placeholder="Teixeira">
+                    </div>
+                    <div>
+                        <label for="birthday">Nascimento:</label>
+                        <input type="date" name="birthday" id="birthday">
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Adicional</legend>
+                    <div>
+                        <label for="file">Foto</label>
+                        <input type="file" name="file" id="file" accept=".png, .jpeg, .jpg">
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Profissional</legend>
+                    <div>
+                        <label for="office">Cargo:</label>
+                        <select name="office" id="office">
+                            <optgroup label="T.I">
+                                <option value="1">Analista de Sistemas</option>
+                                <option value="2">Desenvolvedor Web Full-Stack</option>
+                                <option value="3">Gerente de T.I</option>
+                                <option value="4">Gerente de Projetos</option>
+                                <option value="5">Profissional da Área de Suporte</option>
+                                <option value="6">Programador Front-End</option>
+                                <option value="7">Programador Back-End</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="company">Empresa:</label>
+                        <input type="text" name="company" id="company" size="50" maxlength="50"
+                            placeholder="Teixeira Dias LTDA">
+                    </div>
+                </fieldset>
+                <div>
+                    <button type="submit">
+                        Salvar
+                    </button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>
