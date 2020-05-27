@@ -1,7 +1,7 @@
 class UserView {
 
     constructor() {
-        this.app = this.selectElement('body');
+        this.body = this.selectElement('body');
 
         this.form = this.selectElement('form');
         this.name = this.selectElement('#name')
@@ -12,10 +12,11 @@ class UserView {
         this.company = this.selectElement('#company');
 
         this.photo = '';
-        this.div = this.createElement('div');
-        this.figure = this.createElement('figure');
-        this.img = this.createElement('img');
-        this.figcaption = this.createElement('figcaption');
+        this.div = '';
+        this.figure = '';
+        this.img = '';
+        this.figcaption = '';
+        this.progress = '';
     }
 
     bindCreateUser(handler) {
@@ -44,23 +45,64 @@ class UserView {
     bindSelectUserFile() {
         this.file.addEventListener('change', (event) => {
             if (event.target.files.length === 1) {
-                this.importUserFile(this._getFile);
+                const isValid = this.validateUserFile();
+
+                if (isValid) this.importUserFile();
             }
         });
     }
 
-    importUserFile(file) {
+    importUserFile() {
         const fileReader = new FileReader();
 
         fileReader.readAsDataURL(this._getFile);
 
         fileReader.addEventListener('load', (event) => {
             this._setPhoto = event.target.result;
+
+            this.displayPhotoThumbnail();
+        });
+
+        fileReader.addEventListener('progress', (event) => {
+            if (event.loaded && event.total) {
+                const percentual = (event.loaded / event.total) * 100;
+
+                this.progress = this.createElement('progress');
+
+                this.progress.min = 0;
+                this.progress.max = 100;
+                this.progress.value = Math.round(percentual);
+            }
         });
     }
 
-    validateUserFile(file) {
-        if ()
+    displayPhotoThumbnail() {
+        this.div = this.createElement('div');
+        this.figure = this.createElement('figure');
+        this.img = this.createElement('img');
+        this.figcaption = this.createElement('figcaption');
+
+        this.img.src = this._getPhoto;
+        this.img.alt = (this._getName && this._getSurname) ? `Miniatura de ${this._getName} ${this._getSurname}` : 'Miniatura';
+        this.img.title = (this._getName && this._getSurname) ? `Miniatura de ${this._getName} ${this._getSurname}` : 'Miniatura';
+        this.img.style.width = '200px';
+        this.img.style.height = '250px';
+        this.figcaption.textContent = `${this._getName} ${this._getSurname}`
+
+        this.div.append(this.figure);
+        this.figure.append(this.img);
+        this.figure.append(this.figcaption);
+        this.body.append(this.div);
+    }
+
+    validateUserFile() {
+        let isValid = false;
+
+        if (this._getFile.type.indexOf('/png') !== -1 || 
+            this._getFile.type.indexOf('/jpg') !== -1 || 
+            this._getFile.type.indexOf('/jpeg') !== -1) isValid = true;
+        
+        return isValid;
     }
 
     validateUser() {
