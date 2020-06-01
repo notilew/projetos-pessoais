@@ -1,22 +1,23 @@
 class UserView {
 
     constructor() {
+        this.photo = '';
+
         this.body = this.selectElement('body');
 
-        this.form = this.selectElement('form');
+        this.section = this.selectElement('header section');
+        this.figure = this.selectElement('header section figure');
+        this.img = this.selectElement('header section figure img');
+        this.figcaption = this.selectElement('header section figure figcaption');
+
+        this.form = this.selectElement('main section form');
         this.name = this.selectElement('#name')
         this.surname = this.selectElement('#surname');
         this.birthday = this.selectElement('#birthday');
         this.file = this.selectElement('#file');
+        this.progress = this.selectElement('#progress');
         this.office = this.selectElement('#office');
         this.company = this.selectElement('#company');
-
-        this.photo = '';
-        this.div = '';
-        this.figure = '';
-        this.img = '';
-        this.figcaption = '';
-        this.progress = '';
     }
 
     bindCreateUser(handler) {
@@ -66,30 +67,26 @@ class UserView {
         fileReader.addEventListener('progress', (event) => {
             if (event.loaded && event.total) {
                 const percentual = (event.loaded / event.total) * 100;
-
-                this.progress = this.createElement('progress');
-
-                this.progress.min = 0;
-                this.progress.max = 100;
+                
                 this.progress.value = Math.round(percentual);
             }
         });
     }
 
     displayPhotoThumbnail() {
-        this.div = this.createElement('div');
-        this.figure = this.createElement('figure');
-        this.img = this.createElement('img');
-        this.figcaption = this.createElement('figcaption');
-
         this.img.src = this._getPhoto;
-        this.img.alt = (this._getName && this._getSurname) ? `Miniatura de ${this._getName} ${this._getSurname}` : 'Miniatura';
-        this.img.title = (this._getName && this._getSurname) ? `Miniatura de ${this._getName} ${this._getSurname}` : 'Miniatura';
-        this.img.style.width = '200px';
-        this.img.style.height = '250px';
-        this.figcaption.textContent = `${this._getName} ${this._getSurname}`
+        this.img.alt = (this._getName && this._getSurname) ? `${this._getName} ${this._getSurname}` : 'Usuário Desconhecido';
+        this.img.title = (this._getName && this._getSurname) ? `${this._getName} ${this._getSurname}` : 'Usuário Desconhecido';
+        this.img.style.width = '100px';
+        this.img.style.height = '100px';
+        this.img.style.borderStyle = 'double';
+        this.img.style.borderWidth = 'medium';
+        this.img.style.borderColor = '#848484';
+        this.img.style.borderRadius = '50%';
 
-        this.div.append(this.figure);
+        this.figcaption.textContent = `${this._getName} ${this._getSurname}`;
+        
+        this.section.append(this.figure);
         this.figure.append(this.img);
         this.figure.append(this.figcaption);
         this.body.append(this.div);
