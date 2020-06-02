@@ -31,7 +31,7 @@
         <section id="user-bar">
             <figure>
                 <img src="../../../assets/img/user/unknown-user.jpg" alt="Usuário Desconhecido"
-                    title="Usuário Desconhecido" width="100" height="100">
+                    title="Usuário Desconhecido" width="80" height="80">
                 <figcaption>Usuário Desconhecido</figcaption>
             </figure>
         </section>
@@ -49,32 +49,38 @@
                     <legend>Pessoal</legend>
                     <div>
                         <label for="name">Nome:</label>
-                        <input type="text" name="name" id="name" size="30" maxlength="30" placeholder="João">
+                        <input type="text" name="name" id="name" size="30" maxlength="30" placeholder="João" required>
                     </div>
                     <div>
                         <label for="surname">Sobrenome:</label>
-                        <input type="text" name="surname" id="surname" size="30" maxlength="30" placeholder="Teixeira">
+                        <input type="text" name="surname" id="surname" size="30" maxlength="30" placeholder="Teixeira"
+                            required>
                     </div>
                     <div>
                         <label for="birthday">Nascimento:</label>
-                        <input type="date" name="birthday" id="birthday">
+                        <input type="date" name="birthday" id="birthday" required>
                     </div>
                 </fieldset>
                 <fieldset>
                     <legend>Adicional</legend>
                     <div>
-                        <label for="file">Foto</label>
-                        <input type="file" name="file" id="file" accept=".png, .jpeg, .jpg">
+                        <label for="email">E-mail:</label>
+                        <input type="email" name="email" id="email" size="50" maxlength="50"
+                            placeholder="j-teixeira@gmail.com" required>
                     </div>
                     <div>
-                        <progress id="progress" value="0" min="0" max="100"></progress>
+                        <label for="file">Foto</label>
+                        <input type="file" name="file" id="file" accept=".png, .jpeg, .jpg">
+                        <span>
+                            <progress id="progress" value="0" min="0" max="100"></progress>
+                        </span>
                     </div>
                 </fieldset>
                 <fieldset>
                     <legend>Profissional</legend>
                     <div>
                         <label for="office">Cargo:</label>
-                        <select name="office" id="office">
+                        <select name="office" id="office" required>
                             <optgroup label="T.I">
                                 <option value="1">Analista de Sistemas</option>
                                 <option value="2">Desenvolvedor Web Full-Stack</option>
@@ -89,7 +95,7 @@
                     <div>
                         <label for="company">Empresa:</label>
                         <input type="text" name="company" id="company" size="50" maxlength="50"
-                            placeholder="Teixeira Dias LTDA">
+                            placeholder="Teixeira Dias LTDA" required>
                     </div>
                 </fieldset>
                 <div>

@@ -6,7 +6,6 @@ class UserModel {
  
     createUser(user) {
         this.users.push(user);
-        console.log(this.users);
     }
 
     updateUser(user) { }

@@ -2,18 +2,16 @@ class UserView {
 
     constructor() {
         this.photo = '';
-
         this.body = this.selectElement('body');
-
         this.section = this.selectElement('header section');
         this.figure = this.selectElement('header section figure');
         this.img = this.selectElement('header section figure img');
         this.figcaption = this.selectElement('header section figure figcaption');
-
         this.form = this.selectElement('main section form');
         this.name = this.selectElement('#name')
         this.surname = this.selectElement('#surname');
         this.birthday = this.selectElement('#birthday');
+        this.email = this.selectElement('#email');
         this.file = this.selectElement('#file');
         this.progress = this.selectElement('#progress');
         this.office = this.selectElement('#office');
@@ -31,6 +29,7 @@ class UserView {
                     name: this._getName,
                     surname: this._getSurname,
                     birthday: this._getBirthday,
+                    email: this._getEmail,
                     photo: this._getPhoto,
                     office: this._getOffice,
                     company: this._getCompany
@@ -48,7 +47,12 @@ class UserView {
             if (event.target.files.length === 1) {
                 const isValid = this.validateUserFile();
 
-                if (isValid) this.importUserFile();
+                if (isValid) {
+                    this.importUserFile();
+                } else {
+                    this.file.value = '';
+                    this.showMessage('Os arquivos permitidos são do tipo .png, .jpg ou .jpeg!');
+                }
             }
         });
     }
@@ -58,12 +62,6 @@ class UserView {
 
         fileReader.readAsDataURL(this._getFile);
 
-        fileReader.addEventListener('load', (event) => {
-            this._setPhoto = event.target.result;
-
-            this.displayPhotoThumbnail();
-        });
-
         fileReader.addEventListener('progress', (event) => {
             if (event.loaded && event.total) {
                 const percentual = (event.loaded / event.total) * 100;
@@ -71,14 +69,20 @@ class UserView {
                 this.progress.value = Math.round(percentual);
             }
         });
+
+        fileReader.addEventListener('load', (event) => {
+            this._setPhoto = event.target.result;
+
+            this.displayPhotoThumbnail();
+        });
     }
 
     displayPhotoThumbnail() {
         this.img.src = this._getPhoto;
         this.img.alt = (this._getName && this._getSurname) ? `${this._getName} ${this._getSurname}` : 'Usuário Desconhecido';
         this.img.title = (this._getName && this._getSurname) ? `${this._getName} ${this._getSurname}` : 'Usuário Desconhecido';
-        this.img.style.width = '100px';
-        this.img.style.height = '100px';
+        this.img.style.width = '80px';
+        this.img.style.height = '80px';
         this.img.style.borderStyle = 'double';
         this.img.style.borderWidth = 'medium';
         this.img.style.borderColor = '#848484';
@@ -105,7 +109,12 @@ class UserView {
     validateUser() {
         let isValid = true;
 
-        if (!this._getName, !this._getSurname, !this._getBirthday, !this._getOffice, !this._getCompany) isValid = false;
+        if (!this._getName, 
+            !this._getSurname, 
+            !this._getBirthday, 
+            !this._setEmail, 
+            !this._getOffice, 
+            !this._getCompany) isValid = false;
 
         return isValid;
     }
@@ -114,9 +123,14 @@ class UserView {
         this._setName = '';
         this._setSurname = '';
         this._setBirthday = '';
+        this._setEmail = '';
         this._setPhoto = '';
         this._setOffice = '';
         this._setCompany = '';
+    }
+
+    showMessage(message) {
+        alert(message);
     }
 
     createElement(tagName, idName, className) {
@@ -154,6 +168,14 @@ class UserView {
 
     set _setBirthday(birthday) {
         this.birthday.value = birthday;
+    }
+
+    get _getEmail() {
+        return this.email.value;
+    }
+
+    set _setEmail(email) {
+        this.email.value = email;
     }
 
     get _getFile() {
