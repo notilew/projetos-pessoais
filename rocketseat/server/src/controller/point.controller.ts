@@ -31,6 +31,8 @@ class PointController {
             longitude
         };
 
+        point.image = 'image-fake';
+
         const pointId = await trx('points').insert(point);
 
         const pointItems = items.map((item: number) => {
