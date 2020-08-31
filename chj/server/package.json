@@ -1,0 +1,26 @@
+{
+    "name": "controle-horas-jira",
+    "version": "1.0.0",
+    "description": "API para controle de horas de trabalho que devem ser lançadas no JIRA",
+    "main": "main.js",
+    "scripts": {
+        "start": "nodemon ./src/main.js",
+        "knex:sqlite:migrate": "knex --knexfile ./src/app/core/database/sqlite/knex.config.js migrate:latest",
+        "test:sqlite": "mocha ./test/sqlite/sqlite.spec.js",
+        "test:user": "mocha ./test/user/user.spec.js",
+        "test:task": "mocha ./test/task/task.spec.js"
+    },
+    "keywords": [],
+    "author": "Wellington Felix",
+    "license": "MIT",
+    "devDependencies": {
+        "mocha": "^8.1.1",
+        "nock": "^13.0.3",
+        "nodemon": "^2.0.4"
+    },
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "knex": "^0.21.4",
+        "sqlite3": "^5.0.0"
+    }
+}
